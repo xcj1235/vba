@@ -1,1 +1,43 @@
-test
+Sub click_1()
+Dim number1 As String
+Dim ws1 As Worksheets
+Dim array1(7) As Variant
+Dim n2 As Long
+Dim num2 As Variant
+
+'number1 = Worksheets("Sheet2").Cells(1, 1).Value
+'MsgBox number1
+
+'i = 1
+
+'Do While Worksheets("検索値").Cells(i, 1) <> ""
+'    i = i + 1
+    
+'    If number1 = Worksheets("検索値").Cells(i, 1) Then
+'        Exit Do
+'    End If
+'Loop
+'ii = 2
+'Do While ii <= 8
+
+'    array1(ii - 1) = Worksheets("検索値").Cells(i, ii)
+'    ii = ii + 1
+'Loop
+
+
+'For iii = 1 To 7
+'    MsgBox array1(iii)
+'Next iii
+n2 = Worksheets("Sheet2").Cells(11, 9)
+'MsgBox roundD(n2)
+Worksheets("Sheet2").Cells(12, 9).Value = roundD(n2)
+End Sub
+
+Function roundD(ByVal num1 As Long) As Variant
+'MsgBox num1
+If num1 > 9999 Then
+roundD = Format(Application.WorksheetFunction.RoundDown(num1, 0), "[>9999]####億###0")
+Else
+roundD = Format(Application.WorksheetFunction.RoundDown(num1, 0), "[<=9999]###0")
+End If
+End Function
