@@ -98,7 +98,7 @@ For i = 0 To 試算期間
         End If
     Else
         If 本人性別 = "男" Then
-            If (本人試算開始年齢 + i) = 81 Or (配偶者試算開始年齢 + i) = 87 Or (本人試算開始年齢 + i) = 100 Or (配偶者試算開始年齢 + i) = 100 Then
+            If (本人試算開始年齢 + i) = 81 Or (配偶者試算開始年齢 + i) = 87 Or (((本人試算開始年齢 + i) = 100 Or (配偶者試算開始年齢 + i) = 100) And 本人寿命 = 100) Then
                 If (本人試算開始年齢 + i <= 本人寿命) Then
                 Worksheets("Sheet2").Cells(14, 11 + j).Value = 本人試算開始年齢 + i
                 End If
@@ -109,7 +109,7 @@ For i = 0 To 試算期間
             End If
     
         Else
-            If (本人試算開始年齢 + i) = 87 Or (配偶者試算開始年齢 + i) = 81 Or (本人試算開始年齢 + i) = 100 Or (配偶者試算開始年齢 + i) = 100 Then
+            If (本人試算開始年齢 + i) = 87 Or (配偶者試算開始年齢 + i) = 81 Or (((本人試算開始年齢 + i) = 100 Or (配偶者試算開始年齢 + i) = 100) And 本人寿命 = 100) Then
                 If (本人試算開始年齢 + i <= 本人寿命) Then
                 Worksheets("Sheet2").Cells(14, 11 + j).Value = 本人試算開始年齢 + i
                 End If
