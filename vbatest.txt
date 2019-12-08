@@ -41,3 +41,84 @@ Else
 roundD = Format(Application.WorksheetFunction.RoundDown(num1, 0), "[<=9999]###0")
 End If
 End Function
+
+
+
+Sub click_2()
+Dim 本人年齢 As Integer
+Dim 配偶者年齢 As Integer
+Dim 本人寿命 As Integer
+Dim 配偶者寿命 As Integer
+Dim 本人試算開始年齢 As Integer
+Dim 配偶者試算開始年齢 As Integer
+Dim 試算期間 As Integer
+Dim 本人性別 As String
+
+Worksheets("Sheet2").Range("K14:AD15").Value = ""
+
+If Worksheets("Sheet2").Cells(14, 7) = "男性" Then
+本人性別 = "男"
+Else
+本人性別 = "女"
+End If
+
+本人年齢 = Worksheets("Sheet2").Cells(14, 9)
+配偶者年齢 = Worksheets("Sheet2").Cells(15, 9)
+本人寿命 = Worksheets("Sheet2").Cells(14, 8)
+配偶者寿命 = Worksheets("Sheet2").Cells(15, 8)
+
+本人試算開始年齢 = 65
+配偶者試算開始年齢 = 配偶者年齢 + (本人試算開始年齢 - 本人年齢)
+
+If (本人寿命 - 本人試算開始年齢) > (配偶者寿命 - 配偶者試算開始年齢) Then
+試算期間 = 本人寿命 - 本人試算開始年齢 + 1
+Else
+試算期間 = 配偶者寿命 - 配偶者試算開始年齢 + 1
+End If
+j = 0
+For i = 0 To 試算期間
+    If i < 11 Then
+        If 本人性別 = "男" Then
+            If (本人試算開始年齢 + i <= 本人寿命) Then
+            Worksheets("Sheet2").Cells(14, 11 + j).Value = 本人試算開始年齢 + i
+            End If
+            If (配偶者試算開始年齢 + i <= 配偶者寿命) Then
+            Worksheets("Sheet2").Cells(15, 11 + j).Value = 配偶者試算開始年齢 + i
+            End If
+            j = j + 1
+    
+        Else
+            If (本人試算開始年齢 + i <= 本人寿命) Then
+            Worksheets("Sheet2").Cells(14, 11 + j).Value = 本人試算開始年齢 + i
+            End If
+            If (配偶者試算開始年齢 + i <= 配偶者寿命) Then
+            Worksheets("Sheet2").Cells(15, 11 + j).Value = 配偶者試算開始年齢 + i
+            End If
+            j = j + 1
+        End If
+    Else
+        If 本人性別 = "男" Then
+            If (本人試算開始年齢 + i) = 81 Or (配偶者試算開始年齢 + i) = 87 Or (本人試算開始年齢 + i) = 100 Or (配偶者試算開始年齢 + i) = 100 Then
+                If (本人試算開始年齢 + i <= 本人寿命) Then
+                Worksheets("Sheet2").Cells(14, 11 + j).Value = 本人試算開始年齢 + i
+                End If
+                If (配偶者試算開始年齢 + i <= 配偶者寿命) Then
+                Worksheets("Sheet2").Cells(15, 11 + j).Value = 配偶者試算開始年齢 + i
+                End If
+                j = j + 1
+            End If
+    
+        Else
+            If (本人試算開始年齢 + i) = 87 Or (配偶者試算開始年齢 + i) = 81 Or (本人試算開始年齢 + i) = 100 Or (配偶者試算開始年齢 + i) = 100 Then
+                If (本人試算開始年齢 + i <= 本人寿命) Then
+                Worksheets("Sheet2").Cells(14, 11 + j).Value = 本人試算開始年齢 + i
+                End If
+                If (配偶者試算開始年齢 + i <= 配偶者寿命) Then
+                Worksheets("Sheet2").Cells(15, 11 + j).Value = 配偶者試算開始年齢 + i
+                End If
+                j = j + 1
+            End If
+        End If
+    End If
+Next i
+End Sub
